@@ -34,6 +34,27 @@ p_value<- function(p){
 }
 
 
+#################
+#  print_ANOVA  #    
+#################
+
+print_ANOVA<- function(object, line, type= "F1"){
+  object<- object$ANOVA # subset only ANOVA results
+  type<- (unlist((as.numeric(unlist(strsplit(unlist(type), "[^0-9]+")))))) # get F1 or F2
+  type<- type[!is.na(type)] # take only the number
+  df<- paste("F", type, "(", object$DFn[line], ",",object$DFd[line], ")", sep="")
+  F_value<- round(object$F[line],2)
+  MSE<- round(object$MSE[line], 2)
+  p<- p_value(object$p[line])
+  
+  output<- paste(df, "= ", F_value, ", ", "MSE", "= ", MSE,
+                 ", ", p, sep="")
+  return(output)
+  
+}
+
+
+
 ##############
 #  Bonf_LMM  #    
 ##############
