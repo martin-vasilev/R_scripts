@@ -162,7 +162,7 @@ ttest.sens<- function(x, y, title="Bayes factor sensitivity", paired=TRUE, range
 # rescales the count frequencies of Uk-Subtlex (default) or the BNC to give frequency count per million 
 # input is the frequency count, and the name of the database (leave empty for SUBTLEX or use db="BNC"
 # for the BNC)
-rescale_freq<- function(count, db="SUBTLEX"){
+rescale_freq<- function(count, db="SUBTLEX", exact=FALSE){
   if(db=="SUBTLEX"){
     TotalCount<- 201335638 # from p. 1178
   }
@@ -171,6 +171,10 @@ rescale_freq<- function(count, db="SUBTLEX"){
   }
   
   count_per_mil<- (count/TotalCount)*1000000
-  count_per_mil<- round(count_per_mil)
+  if(exact==FALSE){
+    count_per_mil<- round(count_per_mil)
+  }
+    
   return(count_per_mil)
 }
+
