@@ -178,3 +178,8 @@ rescale_freq<- function(count, db="SUBTLEX", exact=FALSE){
   return(count_per_mil)
 }
 
+#####################
+# NOT WRITTEN BY ME :
+#####################
+# Author: http://stackoverflow.com/a/22701462/3903676
+as.numeric.factor <- function(x) {as.numeric(levels(x))[x]}
