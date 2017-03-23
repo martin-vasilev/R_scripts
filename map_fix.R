@@ -325,7 +325,7 @@ parse_fix<- function(file, map, coords, trial_db, i){
       
       loc<- map[fix$y[j], fix$x[j]] # locate fixation
       
-      if(length(loc==0)){
+      if(length(loc)==0){
         outsideText[j]<- 1
       } else{
         outsideText[j]<- 0
