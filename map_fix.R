@@ -426,6 +426,8 @@ parse_fix<- function(file, map, coords, trial_db, i){
 ###################################################################################################
 #
 
+source("plot_fix.R")
+
 raw_fix<- NULL
 
 for (i in 1:length(data)){ # for each subject..
@@ -446,6 +448,10 @@ for (i in 1:length(data)){ # for each subject..
     raw_fix_temp<- parse_fix(file, map, coords, trial_db[j,], i)
     
     raw_fix<- rbind(raw_fix, raw_fix_temp)
+    
+    # create picture of fixations:
+    plot_fix(coords, raw_fix_temp, i, j)
+    
     cat(toString(j)); cat(" ")
   } # end of item loop
   
