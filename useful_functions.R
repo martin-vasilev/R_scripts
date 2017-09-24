@@ -136,7 +136,7 @@ ttest.sens<- function(x, y, title="Bayes factor sensitivity", paired=TRUE, range
     geom_line(size=2)+ xlab("Prior scale")+ ylab("Bayes Factor")+ ggtitle(title)+
     theme(title=element_text(size=20), axis.title.x = element_text(size=20, face="bold"), 
           axis.title.y = element_text(size=20, face="bold"), axis.text=element_text(size=20), 
-          panel.border = element_rect(linetype = "solid", colour = "black"), axis.text=element_text(size=16), 
+          panel.border = element_rect(linetype = "solid", colour = "black"), 
           legend.key = element_rect(colour = "#000000", size=1))
   
   # add shape showing default prior:
