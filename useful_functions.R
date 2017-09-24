@@ -153,7 +153,7 @@ ttest.sens<- function(x, y, title="Bayes factor sensitivity", paired=TRUE, range
   }
   
   Plot<- Plot + geom_point(mapping=aes(x=0.7, y=db$BF[which(db$range==0.7)], shape=22), color="red", fill="red", size=8)+ 
-         scale_shape_identity()+ geom_text(mapping=aes(x=tpos, y=db$BF[7]+(20/100)*db$BF[7], 
+         scale_shape_identity()+ geom_text(mapping=aes(x=tpos, y=db$BF[which(db$range==0.7)]+(20/100)*db$BF[which(db$range==0.7)], 
          label= "default prior"), size=6)
   
   return(Plot)
