@@ -124,14 +124,18 @@ ttest.sens<- function(x, y, title="Bayes factor sensitivity", paired=TRUE, range
   db<- data.frame(range, BF)
   
   xmargs<- seq(min(range), max(range), 0.3)
+  xmarg_S<- NULL
+  
+  for(i in 1:length(xmargs)){
+      xmarg_S[i]<- toString(xmargs[i])
+    }
   #ymargs<- seq(min(BF), max(BF), 0.3)
   
   Plot<- ggplot(data= db, aes(x=range, y= BF))+
     theme_bw() + theme(panel.grid.major = element_line(colour = "#BDBDBD", size=0.7),
                        axis.line = element_line(colour = "black", size=2),
                        panel.border = element_rect(colour = "black", size=1.5, fill = NA))+
-    scale_x_continuous(breaks=xmargs, labels=c(toString(xmargs[1]), toString(xmargs[2]), toString(xmargs[3]), 
-                                               toString(xmargs[4]), toString(xmargs[5]), toString(xmargs[6]), toString(xmargs[7])))+
+    scale_x_continuous(breaks=xmargs, labels= xmarg_S)+
     scale_y_continuous(breaks = pretty_breaks(n = 7))+
     geom_line(size=2)+ xlab("Prior scale")+ ylab("Bayes Factor")+ ggtitle(title)+
     theme(title=element_text(size=20), axis.title.x = element_text(size=20, face="bold"), 
