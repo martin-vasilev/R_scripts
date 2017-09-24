@@ -92,7 +92,8 @@ load_package<- function(package){
 
 # Gives a sensitivity analysis with different priors (as a plot)
 # Developed to work for the ttestBF function from the BayesFactor package
-ttest.sens<- function(x, y, title="Bayes factor sensitivity", paired=TRUE, range= seq(0.1, 2, 0.1)){
+ttest.sens<- function(x, y, title="Bayes factor sensitivity", paired=TRUE, range= seq(0.1, 2, 0.1),
+                     xLabelBreak=0.2){
   
   if("BayesFactor" %in% rownames(installed.packages())==FALSE){
     message("Installing required package 'BayesFactor'...")
@@ -123,7 +124,7 @@ ttest.sens<- function(x, y, title="Bayes factor sensitivity", paired=TRUE, range
   
   db<- data.frame(range, BF)
   
-  xmargs<- seq(min(range), max(range), 0.3)
+  xmargs<- seq(min(range), max(range), xLabelBreak)
   xmarg_S<- NULL
   
   for(i in 1:length(xmargs)){
@@ -151,7 +152,7 @@ ttest.sens<- function(x, y, title="Bayes factor sensitivity", paired=TRUE, range
     tpos<- 0.9
   }
   
-  Plot<- Plot + geom_point(mapping=aes(x=0.7, y=db$BF[7], shape=22), color="red", fill="red", size=8)+ 
+  Plot<- Plot + geom_point(mapping=aes(x=0.7, y=db$BF[which(db$range==0.7)], shape=22), color="red", fill="red", size=8)+ 
          scale_shape_identity()+ geom_text(mapping=aes(x=tpos, y=db$BF[7]+(20/100)*db$BF[7], 
          label= "default prior"), size=6)
   
