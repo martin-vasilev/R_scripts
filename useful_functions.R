@@ -142,7 +142,7 @@ ttest.sens<- function(x, y, title="Bayes factor sensitivity", paired=TRUE, range
     theme(title=element_text(size=20), axis.title.x = element_text(size=20, face="bold"), 
           axis.title.y = element_text(size=20, face="bold"), axis.text=element_text(size=20), 
           panel.border = element_rect(linetype = "solid", colour = "black"), 
-          legend.key = element_rect(colour = "#000000", size=1))
+          legend.key = element_rect(colour = "#000000", size=1), plot.title = element_text(hjust = 0.5))
   
   # add shape showing default prior:
   if(!hasArg(tpos)){
