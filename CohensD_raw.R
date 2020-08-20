@@ -88,14 +88,14 @@ CohensD_raw<- function(data, measure, group_var, baseline, avg_var= "sub"){
     
   }
   
-  mean_corr<- cor(cond1, cond2) 
+  mean_corr<- cor(cond1, cond2, use = 'pairwise.complete.obs') 
   
   # calculate group means and SDs:
-  M1<- mean(dat[which(dat[,2]== groups[1]),1])
-  M2<- mean(dat[which(dat[,2]== groups[2]),1])
+  M1<- mean(dat[which(dat[,2]== groups[1]),1], na.rm=T)
+  M2<- mean(dat[which(dat[,2]== groups[2]),1], na.rm=T)
   
-  SD1<- sd(dat[which(dat[,2]== groups[1]),1])
-  SD2<- sd(dat[which(dat[,2]== groups[2]),1])
+  SD1<- sd(dat[which(dat[,2]== groups[1]),1], na.rm=T)
+  SD2<- sd(dat[which(dat[,2]== groups[2]),1], na.rm=T)
   
   # Calculate Cohen's d
   if(baseline== groups[1]){
