@@ -60,6 +60,7 @@ CohensD_raw<- function(data, measure, group_var, baseline, avg_var= "sub"){
     return(d_var)
   }
 
+  warning("This function currently works only with within-subject data")
   
   dat<- data[, c(measure, group_var, avg_var)]
   
