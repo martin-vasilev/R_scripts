@@ -80,11 +80,11 @@ CohensD_raw<- function(data, measure, group_var, baseline, avg_var= "sub"){
   for (i in 1:length(subs)){
     # cond 1:
     a<- dat[which(dat[,3]== subs[i] & dat[,2]== groups[1]),]
-    cond1[i]<- mean(a[,1])
+    cond1[i]<- mean(a[,1], na.rm= T)
     
     # cond 2:
     b<- dat[which(dat[,3]== subs[i] & dat[,2]== groups[2]),]
-    cond2[i]<- mean(b[,1])
+    cond2[i]<- mean(b[,1], na.rm= T)
     
   }
   
