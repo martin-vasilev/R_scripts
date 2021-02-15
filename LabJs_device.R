@@ -2,7 +2,7 @@
 LabJs_device <- function(data){
   
   # load/ install required packages:
-  packages= c("stringi", "uaparserjs") # list of used packages:
+  packages= c("stringi", "uaparserjs", "dplyr") # list of used packages:
   
   for(i in 1:length(packages)){
     
