@@ -1,5 +1,5 @@
 
-LabJs_device <- function(data){
+LabJs_device <- function(data, base_r_import= TRUE){
   
   # load/ install required packages:
   packages= c("stringr", "uaparserjs", "dplyr") # list of used packages:
@@ -16,11 +16,14 @@ LabJs_device <- function(data){
   
   # Extract code containing meta tag
 
-  I<- data[which(!is.na(data$meta)),]
-  setup= I$meta
-
-  
-  
+  if(base_r_import== TRUE){
+    I<- data$meta
+    setup<- I[which(nchar(I)>0)]
+  } else{
+    I<- data[which(!is.na(data$meta)),]
+    setup= I$meta
+  }
+    
   result= NULL
   for(i in 1:length(setup)){ ### iterate for each subject
     t= NULL
