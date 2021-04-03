@@ -59,6 +59,9 @@ LabJs_device <- function(data, base_r_import= TRUE){
   result$subject= 1: nrow(result)
   
   
+  result<- result[, c("subject", "labjs_version", "browser", "browser_version", "screen_width", "screen_height", "device_pixel_ratio","platform",          
+                      "OS")]
+  
 return(result)
   
 }
