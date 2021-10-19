@@ -66,6 +66,8 @@ CohensD_raw<- function(data, measure, group_var, baseline, avg_var= "sub"){
   
   dat[,2]<- as.factor(dat[,2])
   
+  dat[,2]<- droplevels(dat[,2])
+  
   groups<- levels(dat[,2])
   
   if(length(groups)!=2){
