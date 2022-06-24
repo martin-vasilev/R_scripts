@@ -59,46 +59,47 @@ CohensD_raw<- function(data, measure, group_var, baseline, avg_var= "sub"){
     
     return(d_var)
   }
-
+  
   warning("This function currently works only with within-subject data")
   
   dat<- data[, c(measure, group_var, avg_var)]
+  colnames(dat)<- c("V1", "V2","V3")
   
-  dat[,2]<- as.factor(dat[,2])
+  dat$V2<- as.factor(dat$V2)
   
-  dat[,2]<- droplevels(dat[,2])
+  dat$V2<- droplevels(dat$V2)
   
-  groups<- levels(dat[,2])
+  groups<- levels(dat$V2)
   
   if(length(groups)!=2){
     stop("Cohen's d can be calculated only with 2 groups!")
   }
   
-
+  
   # calculate correlation between two means:
   cond1<- NULL; cond2<- NULL
-  subs<- unique(dat[,3])
+  subs<- unique(dat$V3)
   N<- length(subs) # number of subjects
   
   for (i in 1:length(subs)){
     # cond 1:
-    a<- dat[which(dat[,3]== subs[i] & dat[,2]== groups[1]),]
-    cond1[i]<- mean(a[,1], na.rm= T)
+    a<- dat[which(dat$V3== subs[i] & dat$V2== groups[1]),]
+    cond1[i]<- mean(a$V1, na.rm= T)
     
     # cond 2:
-    b<- dat[which(dat[,3]== subs[i] & dat[,2]== groups[2]),]
-    cond2[i]<- mean(b[,1], na.rm= T)
+    b<- dat[which(dat$V3== subs[i] & dat$V2== groups[2]),]
+    cond2[i]<- mean(b$V1, na.rm= T)
     
   }
   
   mean_corr<- cor(cond1, cond2, use = 'pairwise.complete.obs') 
   
   # calculate group means and SDs:
-  M1<- mean(dat[which(dat[,2]== groups[1]),1], na.rm=T)
-  M2<- mean(dat[which(dat[,2]== groups[2]),1], na.rm=T)
+  M1<- mean(dat$V1[which(dat$V2== groups[1])], na.rm=T)
+  M2<- mean(dat$V1[which(dat$V2== groups[2])], na.rm=T)
   
-  SD1<- sd(dat[which(dat[,2]== groups[1]),1], na.rm=T)
-  SD2<- sd(dat[which(dat[,2]== groups[2]),1], na.rm=T)
+  SD1<- sd(dat$V1[which(dat$V2== groups[1])], na.rm=T)
+  SD2<- sd(dat$V1[which(dat$V2== groups[2])], na.rm=T)
   
   # Calculate Cohen's d
   if(baseline== groups[1]){
